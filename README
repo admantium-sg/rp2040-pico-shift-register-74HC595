@@ -1,5 +1,0 @@
-# rp2040 Shift Register 74HC595 Library
-
-C Library for working with the 74HC595 shift register.
-
-License: BSD-3-Clause
