@@ -14,44 +14,47 @@
 #include <stdio.h>
 #include "rp2040_shift_register.h"
 
+ShiftRegister reg;
+
 void test_shift_register_config(void **state)
 {
-  ShiftRegister reg = {14, 11, 12};
+  reg = shift_register_new((PinConfig){
+      .SERIAL_PIN = 14,
+      .SHIFT_REGISTER_CLOCK_PIN = 11,
+      .STORAGE_REGISTER_CLOCK_PIN = 12});
+
   assert_int_equal(reg.SERIAL_PIN, 14);
   assert_int_equal(reg.SHIFT_REGISTER_CLOCK_PIN, 11);
-  assert_int_equal(reg.LATCH_REGISTER_CLOCK_PIN, 12);
+  assert_int_equal(reg.STORAGE_REGISTER_CLOCK_PIN, 12);
 }
 
 void test_write_bit(void **state)
 {
-  ShiftRegister reg = {14, 11, 12};
-  write_bit(&reg, 1);
+  shift_register_write_bit(&reg, 1);
   assert_int_equal(reg.serial_pin_state, 1);
-  write_bit(&reg, 0);
+  shift_register_write_bit(&reg, 0);
   assert_int_equal(reg.serial_pin_state, 0);
 
-  printf("Shift Register: %s\n", print_shift_register(&reg));
-  assert_memory_equal(print_shift_register(&reg), &"01000000", 8);
+  printf("[0b%s]\n", shift_register_print(&reg));
+  assert_memory_equal(shift_register_print(&reg), &"01000000", 8);
 }
 
 void test_write_bitmask(void **state)
 {
-  ShiftRegister reg = {14, 11, 12};
-  write_bitmask(&reg, 0b00010000);
+  shift_register_write_bitmask(&reg, 0b00010000);
   assert_int_equal(reg.serial_pin_state, 0);
 
-  printf("Shift Register: %s\n", print_shift_register(&reg));
-  assert_memory_equal(print_shift_register(&reg), &"00010000", 8);
+  printf("[0b%s]\n", shift_register_print(&reg));
+  assert_memory_equal(shift_register_print(&reg), &"00010000", 8);
 }
 
 void test_reset_shift_register(void **state)
 {
-  ShiftRegister reg = {14, 11, 12};
-  write_bitmask(&reg, 0b01110001);
-  reset_shift_register(&reg);
+  shift_register_write_bitmask(&reg, 0b01110001);
+  shift_register_reset_shift_register(&reg);
 
-  assert_memory_equal(print_shift_register(&reg), &"00000000", 8);
-  print_shift_register(&reg);
+  assert_memory_equal(shift_register_print(&reg), &"00000000", 8);
+  printf("[0b%s]\n", shift_register_print(&reg));
 }
 
 int main(int argc, char *argv[])
