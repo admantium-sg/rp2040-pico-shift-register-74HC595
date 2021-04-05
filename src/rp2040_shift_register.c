@@ -11,11 +11,21 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "rp2040_shift_register.h"
+#ifdef RP2040
+#include "pico/stdlib.h"
+#endif
+#ifdef LIBTEST
+#include "mocks.c"
+#endif
 
 static bool _write_bit(ShiftRegister *reg, bit b)
 {
+  gpio_put(reg->SERIAL_PIN, b);
+  gpio_put(reg->SHIFT_REGISTER_CLOCK_PIN, 1);
   reg->serial_pin_state = b;
   (b) ? (reg->register_state += 0b10) : (reg->register_state <<= 0b01);
+  gpio_put(reg->SHIFT_REGISTER_CLOCK_PIN, 0);
+  gpio_put(reg->SERIAL_PIN, 0);
   return true;
 }
 
