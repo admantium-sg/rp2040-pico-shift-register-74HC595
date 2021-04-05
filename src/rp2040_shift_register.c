@@ -42,6 +42,8 @@ static bool _write_bitmask(ShiftRegister *reg, bitmask btm)
 
 static bool _flush_shift_register(ShiftRegister *reg)
 {
+  gpio_put(reg->STORAGE_REGISTER_CLOCK_PIN, 1);
+  gpio_put(reg->STORAGE_REGISTER_CLOCK_PIN, 0);
   return true;
 }
 
@@ -79,6 +81,15 @@ static char *_print_shift_register(ShiftRegister *reg)
 
 ShiftRegister shift_register_new(PinConfig pc)
 {
+  gpio_init(pc.SERIAL_PIN);
+  gpio_set_dir(pc.SERIAL_PIN, GPIO_OUT);
+
+  gpio_init(pc.SHIFT_REGISTER_CLOCK_PIN);
+  gpio_set_dir(pc.SHIFT_REGISTER_CLOCK_PIN, GPIO_OUT);
+
+  gpio_init(pc.STORAGE_REGISTER_CLOCK_PIN);
+  gpio_set_dir(pc.STORAGE_REGISTER_CLOCK_PIN, GPIO_OUT);
+
   ShiftRegister *reg = malloc(sizeof(ShiftRegister));
 
   reg->SERIAL_PIN = pc.SERIAL_PIN;

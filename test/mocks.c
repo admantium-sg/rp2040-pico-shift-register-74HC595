@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define GPIO_OUT 1
 typedef uint8_t uint;
 
 void stdio_init_all()
