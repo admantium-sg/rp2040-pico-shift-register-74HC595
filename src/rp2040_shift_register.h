@@ -36,7 +36,7 @@ typedef struct ShiftRegister
   bool (*flush_shift_register)(struct ShiftRegister *);
   bool (*reset_shift_register)(struct ShiftRegister *);
   bool (*reset_storage_register)(struct ShiftRegister *);
-  char (*print_shift_register)(struct ShiftRegister *);
+  char *(*print_shift_register)(struct ShiftRegister *);
 } ShiftRegister;
 
 /* Constructors */

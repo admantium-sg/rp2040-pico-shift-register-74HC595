@@ -49,6 +49,7 @@ static bool _flush_shift_register(ShiftRegister *reg)
 
 static bool _reset_shift_register(ShiftRegister *reg)
 {
+
   return _write_bitmask(reg, 0b0000000);
 }
 
@@ -135,5 +136,5 @@ bool shift_register_reset_storage(ShiftRegister *reg)
 
 char *shift_register_print(ShiftRegister *reg)
 {
-  return (_print_shift_register(reg));
+  return _print_shift_register(reg);
 };
