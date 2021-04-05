@@ -51,7 +51,7 @@ void test_write_bitmask(void **state)
 void test_reset_shift_register(void **state)
 {
   shift_register_write_bitmask(&reg, 0b01110001);
-  shift_register_reset_shift_register(&reg);
+  shift_register_reset(&reg);
 
   assert_memory_equal(shift_register_print(&reg), &"00000000", 8);
   printf("[0b%s]\n", shift_register_print(&reg));

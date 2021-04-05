@@ -52,7 +52,7 @@ static bool _reset_shift_register(ShiftRegister *reg)
   return _write_bitmask(reg, 0b0000000);
 }
 
-static bool _reset_strorage_register(ShiftRegister *reg)
+static bool _reset_storage_register(ShiftRegister *reg)
 {
   _write_bitmask(reg, 0b0000000);
   return _flush_shift_register(reg);
@@ -100,7 +100,7 @@ ShiftRegister shift_register_new(PinConfig pc)
   reg->write_bitmask = _write_bitmask;
   reg->flush_shift_register = _flush_shift_register;
   reg->reset_shift_register = _reset_shift_register;
-  reg->reset_strorage_register = _reset_strorage_register;
+  reg->reset_storage_register = _reset_storage_register;
   reg->print_shift_register = _print_shift_register;
 
   return *reg;
@@ -118,19 +118,19 @@ bool shift_register_write_bitmask(ShiftRegister *reg, bitmask btm)
   return reg->write_bitmask(reg, btm);
 }
 
-bool shift_register_flush_shift_register(ShiftRegister *reg)
+bool shift_register_flush(ShiftRegister *reg)
 {
   return reg->flush_shift_register(reg);
 }
 
-bool shift_register_reset_shift_register(ShiftRegister *reg)
+bool shift_register_reset(ShiftRegister *reg)
 {
   return reg->reset_shift_register(reg);
 }
 
-bool shift_register_reset_strorage_register(ShiftRegister *reg)
+bool shift_register_reset_storage(ShiftRegister *reg)
 {
-  return reg->reset_strorage_register(reg);
+  return reg->reset_storage_register(reg);
 }
 
 char *shift_register_print(ShiftRegister *reg)

@@ -35,21 +35,19 @@ typedef struct ShiftRegister
   bool (*write_bitmask)(struct ShiftRegister *, bitmask);
   bool (*flush_shift_register)(struct ShiftRegister *);
   bool (*reset_shift_register)(struct ShiftRegister *);
-  bool (*reset_strorage_register)(struct ShiftRegister *);
+  bool (*reset_storage_register)(struct ShiftRegister *);
   char (*print_shift_register)(struct ShiftRegister *);
 } ShiftRegister;
 
 /* Constructors */
 
 ShiftRegister shift_register_new(PinConfig);
-ShiftRegister shift_register_copy();
-ShiftRegister shift_register_free();
 
 /* External API */
 
 bool shift_register_write_bit(ShiftRegister *, bit);
 bool shift_register_write_bitmask(ShiftRegister *, bitmask);
-bool shift_register_flush_shift_register(ShiftRegister *);
-bool shift_register_reset_shift_register(ShiftRegister *);
-bool shift_register_reset_strorage_register(ShiftRegister *);
+bool shift_register_flush(ShiftRegister *);
+bool shift_register_reset(ShiftRegister *);
+bool shift_register_reset_storage(ShiftRegister *);
 char *shift_register_print(ShiftRegister *);

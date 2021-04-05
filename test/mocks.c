@@ -13,10 +13,12 @@ void gpio_init(uint gpio)
 {
   //do nothing
 }
+
 static void gpio_set_dir(uint gpio, bool out)
 {
   //do nothing
 }
+
 static void gpio_put(uint gpio, bool value)
 {
   //do nothing
