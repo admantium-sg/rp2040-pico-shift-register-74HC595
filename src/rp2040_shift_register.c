@@ -18,7 +18,7 @@
 #include "mocks.c"
 #endif
 
-static bool _write_bit(ShiftRegister *reg, bit b)
+static bool _write_bit(ShiftRegister *reg, bool b)
 {
   gpio_put(reg->SERIAL_PIN, b);
   gpio_put(reg->SHIFT_REGISTER_CLOCK_PIN, 1);
@@ -29,7 +29,7 @@ static bool _write_bit(ShiftRegister *reg, bit b)
   return true;
 }
 
-static bool _write_bitmask(ShiftRegister *reg, bitmask btm)
+static bool _write_bitmask(ShiftRegister *reg, u_int8_t btm)
 {
   int b = 0b0000001;
   while (b <= 128)
@@ -61,7 +61,7 @@ static bool _reset_storage_register(ShiftRegister *reg)
 
 static char *_print_shift_register(ShiftRegister *reg)
 {
-  char *btm = (char *)malloc(sizeof(bit) * 8);
+  char *btm = (char *)malloc(sizeof(bool) * 8);
   int b = 0b00000001;
 
   for (int i = 0; i < 8; i++)
@@ -109,12 +109,12 @@ ShiftRegister shift_register_new(PinConfig pc)
 
 /* External API */
 
-bool shift_register_write_bit(ShiftRegister *reg, bit b)
+bool shift_register_write_bit(ShiftRegister *reg, bool b)
 {
   return reg->write_bit(reg, b);
 }
 
-bool shift_register_write_bitmask(ShiftRegister *reg, bitmask btm)
+bool shift_register_write_bitmask(ShiftRegister *reg, u_int8_t btm)
 {
   return reg->write_bitmask(reg, btm);
 }

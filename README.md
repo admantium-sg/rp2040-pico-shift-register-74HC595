@@ -63,8 +63,8 @@ This object also defines its functions like `write_bit`, which you can call dire
 ## API Functions
 
 - `ShiftRegister shift_register_new(PinConfig)`: Create a new shift register object
-- `bool shift_register_write_bit(ShiftRegister *, bit)`: Write a single bit to the shift register, and perform a shift-right of all other bits. To output the shift registers' content, use `shift_register_flush`
-- `bool shift_register_write_bitmask(ShiftRegister *, bitmask)`: Write a complete bitmask, e.g. `0b10101010` to the register. To output the shift registers' content, use `shift_register_flush`
+- `bool shift_register_write_bit(ShiftRegister *, bool)`: Write a single bit to the shift register, and perform a shift-right of all other bits. To output the shift registers' content, use `shift_register_flush`
+- `bool shift_register_write_bitmask(ShiftRegister *, u_int8_t)`: Write a complete bitmask, e.g. `0b10101010` to the register. To output the shift registers' content, use `shift_register_flush`
 - `bool shift_register_flush(ShiftRegister *)`: Flush the content of the shift register to the storage register.
 - `bool shift_register_reset(ShiftRegister *)`: Resets the shift register's content to bitmask `0b00000000`.
 - `bool shift_register_reset_storage(ShiftRegister *)` Resets the storage register's content to bitmask `0b00000000` and perforsm a `shift_register_flush()`
