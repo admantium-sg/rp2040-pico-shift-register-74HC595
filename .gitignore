@@ -4,3 +4,4 @@
 .vscode/ipch
 *.bin
 .DS_Store
+build/
