@@ -11,10 +11,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "rp2040_shift_register.h"
-#ifdef RP2040
+#ifndef TEST_BUILD
 #include "pico/stdlib.h"
 #endif
-#ifdef LIBTEST
+#ifdef TEST_BUILD
 #include "mocks.c"
 #endif
 
