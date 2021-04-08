@@ -10,9 +10,10 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <setjmp.h>
+#include <stdint.h>
 #include <cmocka.h>
 #include <stdio.h>
-#include "rp2040_shift_register.h"
+#include <rp2040_shift_register.h>
 
 ShiftRegister reg;
 
