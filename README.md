@@ -67,15 +67,49 @@ This object also defines its functions like `write_bit`, which you can call dire
 - `bool shift_register_write_bitmask(ShiftRegister *, u_int8_t)`: Write a complete bitmask, e.g. `0b10101010` to the register. To output the shift registers' content, use `shift_register_flush`
 - `bool shift_register_flush(ShiftRegister *)`: Flush the content of the shift register to the storage register.
 - `bool shift_register_reset(ShiftRegister *)`: Resets the shift register's content to bitmask `0b00000000`.
-- `bool shift_register_reset_storage(ShiftRegister *)` Resets the storage register's content to bitmask `0b00000000` and perforsm a `shift_register_flush()`
+- `bool shift_register_reset_storage(ShiftRegister *)` Resets the storage register's content to bitmask `0b00000000` and performs a `shift_register_flush()`
 - `char * shift_register_print(ShiftRegister \*)` Prints the shift register's state as a bitmask, and returns a `char*` of the bitmask string.
 
-## Testing
+## Building the Examples Teting
+
+From the main directory:
+
+```bash
+rm -rvf build
+cmake -B build -S . -DEXAMPLE_BUILD=ON
+make -C build/example
+```
+
+Files are contained in `build/examples`.
+
+## Building the Examples Testing
 
 From the main directory, compile and run the tests.
 
 ```bash
-clang -std=c17 -L /usr/local/Cellar/cmocka/1.1.5/lib/ -lcmocka -I src -I test -DLIBTEST -o test.bin test/test.c src/rp2040_shift_register.c && ./test.bin
+rm -rvf build
+cmake -B build -S . -DTEST_BUILD
+make -C build/test
+```
+
+Run tests with `./build/test/test`
+
+```c
+Runing Tests
+[==========] Running 4 test(s).
+[ RUN      ] test_shift_register_config
+[       OK ] test_shift_register_config
+[ RUN      ] test_write_bit
+[0b01000000]
+[       OK ] test_write_bit
+[ RUN      ] test_write_bitmask
+[0b00010000]
+[       OK ] test_write_bitmask
+[ RUN      ] test_reset_shift_register
+[0b00000000]
+[       OK ] test_reset_shift_register
+[==========] 4 test(s) run.
+[  PASSED  ] 4 test(s).
 ```
 
 ## License
