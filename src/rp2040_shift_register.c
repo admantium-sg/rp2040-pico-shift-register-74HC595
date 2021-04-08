@@ -15,7 +15,7 @@
 #include "pico/stdlib.h"
 #endif
 #ifdef TEST_BUILD
-#include "mocks.c"
+#include <../test/mocks.h>
 #endif
 
 static bool _write_bit(ShiftRegister *reg, bool b)
