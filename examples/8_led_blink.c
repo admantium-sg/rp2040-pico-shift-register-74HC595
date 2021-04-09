@@ -11,8 +11,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pico/stdlib.h"
-#include <rp2040_shift_register.h>
+#include <pico/stdlib.h>
+#include <admantium/rp2040_shift_register.h>
 
 void main()
 {
@@ -25,7 +25,7 @@ void main()
 
   while (true)
   {
-    shift_register_write_bit(1, &reg);
+    shift_register_write_bit(&reg, 1);
     shift_register_flush(&reg);
 
     sleep_ms(1050);

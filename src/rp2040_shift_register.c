@@ -10,9 +10,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include "rp2040_shift_register.h"
+#include <admantium/rp2040_shift_register.h>
 #ifndef TEST_BUILD
-#include "pico/stdlib.h"
+#include <pico/stdlib.h>
 #endif
 #ifdef TEST_BUILD
 #include <../test/mocks.h>
