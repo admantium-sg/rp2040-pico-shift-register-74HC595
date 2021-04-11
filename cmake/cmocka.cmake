@@ -7,8 +7,9 @@ FetchContent_Declare(
   GIT_SHALLOW    1
 )
 
-set(BUILD_SHARED_LIBS ON)
-set(WITH_STATIC_LIB ON)
-set(WITH_EXAMPLES OFF)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "")
+set(WITH_STATIC_LIB ON CACHE BOOL "")
+set(WITH_EXAMPLES OFF CACHE BOOL "")
+set(UNIT_TESTING OFF CACHE BOOL "")
 
 FetchContent_MakeAvailable(cmocka)

@@ -109,7 +109,7 @@ From the main directory, compile and run the tests.
 ```sh
 rm -rvf build
 cmake -B build -S . -DTEST_BUILD
-make -C build/test
+make -C build/src && make -C build/test
 ```
 
 Run tests with `build/test/pico_shift_register.tests.bin`
