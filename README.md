@@ -1,4 +1,4 @@
-# rp2040 Shift Register 74HC595 Library
+# Raspberry Pico Shift Register 74HC595 Library
 
 C Library for working with the 74HC595 shift register.
 
@@ -15,23 +15,47 @@ C Library for working with the 74HC595 shift register.
 
 ## Example
 
-How to switch on 8 LEDs:
+Write individual bits and a complete bitmask:
 
 ```c
-#include <rp2040_shift_register.h>
+#include <admantium/pico/shift_register_74HC595.h>
 
 void main()
 {
   ShiftRegister reg = shift_register_new((PinConfig){
-      .SERIAL_PIN = 9,
-      .SHIFT_REGISTER_CLOCK_PIN = 11,
-      .STORAGE_REGISTER_CLOCK_PIN = 10});
+    .SERIAL_PIN = 9,
+    .SHIFT_REGISTER_CLOCK_PIN = 11,
+    .STORAGE_REGISTER_CLOCK_PIN = 10
+  });
+
+  shift_register_write_bit(&reg, 1);
+  shift_register_flush(&reg);
+
+  shift_register_write_bitmask(&reg, 0b10101010);
+  shift_register_flush(&reg);
+
+  shift_register_reset_storage(&reg);
+}
+```
+
+How to switch on 8 LEDs:
+
+```c
+#include <admantium/pico/shift_register_74HC595.h>
+
+void main()
+{
+  ShiftRegister reg = shift_register_new((PinConfig){
+    .SERIAL_PIN = 9,
+    .SHIFT_REGISTER_CLOCK_PIN = 11,
+    .STORAGE_REGISTER_CLOCK_PIN = 10
+  });
 
   int switch_on = 0;
 
   while (true)
   {
-    shift_register_write_bit(1, &reg);
+    shift_register_write_bit(&reg, 1);
     shift_register_flush(&reg);
 
     sleep_ms(1050);
@@ -83,6 +107,8 @@ This object also defines its functions like `write_bit`, which you can call dire
 
 ## Building the Examples
 
+You need to configure the environment variable `PICO_SDK_PATH`.
+
 From the main directory:
 
 ```sh
@@ -103,6 +129,8 @@ Files are contained in `build/examples.
 ```
 
 ## Building the Tests
+
+You need to configure the environment variable `PICO_SDK_PATH`.
 
 From the main directory, compile and run the tests.
 
