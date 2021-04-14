@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <admantium/rp2040_shift_register.h>
+#include <admantium/pico/shift_register_74HC595.h>
 #ifndef TEST_BUILD
 #include <pico/stdlib.h>
 #endif
@@ -49,7 +49,6 @@ static bool _flush_shift_register(ShiftRegister *reg)
 
 static bool _reset_shift_register(ShiftRegister *reg)
 {
-
   return _write_bitmask(reg, 0b0000000);
 }
 

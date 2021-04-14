@@ -13,7 +13,7 @@
 #include <stdint.h>
 #include <cmocka.h>
 #include <stdio.h>
-#include <admantium/rp2040_shift_register.h>
+#include <admantium/pico/shift_register_74HC595.h>
 
 ShiftRegister reg;
 

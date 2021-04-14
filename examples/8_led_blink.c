@@ -12,14 +12,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pico/stdlib.h>
-#include <admantium/rp2040_shift_register.h>
+#include <admantium/pico/shift_register_74HC595.h>
 
 void main()
 {
   ShiftRegister reg = shift_register_new((PinConfig){
-      .SERIAL_PIN = 9,
-      .SHIFT_REGISTER_CLOCK_PIN = 11,
-      .STORAGE_REGISTER_CLOCK_PIN = 10});
+    .SERIAL_PIN = 9,
+    .SHIFT_REGISTER_CLOCK_PIN = 11,
+    .STORAGE_REGISTER_CLOCK_PIN = 10
+  });
 
   int switch_on = 0;
 
