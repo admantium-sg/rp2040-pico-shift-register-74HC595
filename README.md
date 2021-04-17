@@ -61,7 +61,7 @@ void main()
     sleep_ms(1050);
     switch_on++;
 
-    if (switch_on = 8)
+    if (switch_on == 8)
     {
       shift_register_reset_storage(&reg);
       sleep_ms(1050);
